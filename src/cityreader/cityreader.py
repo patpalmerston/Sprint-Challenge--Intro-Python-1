@@ -9,6 +9,12 @@ class City:
         self.lat = lat
         self.lon = lon
 
+    def __repr__(self):
+        return self.name
+
+    def __str__(self):
+        return f"city: {self.name}, Latitude: {self.lat}, Longitude: {self.lon}"
+
 
         # We have a collection of US cities with population over 750,000 stored in the
         # file "cities.csv". (CSV stands for "comma-separated values".)
@@ -26,11 +32,20 @@ cities = []
 
 
 def cityreader(cities=[]):
-  # TODO Implement the functionality to read from the 'cities.csv' file
-  # For each city record, create a new City instance and add it to the
-  # `cities` list
+    # TODO Implement the functionality to read from the 'cities.csv' file
 
-    return cities
+    # reading csv file
+    with open('cities.csv', 'r') as csvfile:
+      # creating a csv reader object
+        csvreader = csv.reader(csvfile)
+        # Return the next row of the reader’s iterable object as a list, parsed according to the current dialect. Usually you should call this as next(reader).
+        next(csvreader)
+
+        # the actual city is index 0, lat is 3, lon is 4, also floating numbers
+        for city in csvreader:
+            cities.append(City(city[0], float(city[3]), float(city[4])))
+
+        return cities
 
 
 cityreader(cities)
@@ -72,7 +87,7 @@ for c in cities:
 
 
 def cityreader_stretch(lat1, lon1, lat2, lon2, cities=[]):
-  # within will hold the cities that fall within the specified region
+    # within will hold the cities that fall within the specified region
     within = []
 
     # TODO Ensure that the lat and lon valuse are all floats
