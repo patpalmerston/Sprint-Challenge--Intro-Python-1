@@ -40,6 +40,8 @@ vehicles = [
 
 # Go through the vehicles list and print the result of calling drive() on each.
 # TODO
-
+# in list comp format
 something = [obj.drive() for obj in vehicles]
-print(something)
+# using a for loop
+for v in vehicles:
+    print(v.drive())

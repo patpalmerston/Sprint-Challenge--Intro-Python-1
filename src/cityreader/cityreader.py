@@ -42,8 +42,8 @@ def cityreader(cities=[]):
         next(csvreader)
 
         # the actual city is index 0, lat is 3, lon is 4, also floating numbers
-        for city in csvreader:
-            cities.append(City(city[0], float(city[3]), float(city[4])))
+        for row in csvreader:
+            cities.append(City(row[0], float(row[3]), float(row[4])))
 
         return cities
 
